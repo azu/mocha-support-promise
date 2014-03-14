@@ -10,12 +10,21 @@ var assert = require("assert");
 function getSuccessPromise() {
     return Promise.resolve(false);
 }
+function getFailurePromise() {
+    return Promise.reject(new Error("this is error"));
+}
 
 describe("Promises", function () {
     context("when return promise object", function () {
         it("should support by mocha", function () {
             return getSuccessPromise().then(function (value) {
                 assert(value);
+            });// => fail
+        });
+        it("should also support by mocha", function () {
+            return getFailurePromise().catch(function (error) {
+                assert(error instanceof Error);
+                assert(error.message === "this is error");
             });
         });
     });
@@ -27,7 +36,14 @@ describe("OLD Promises Test Pattern", function () {
             getSuccessPromise().then(function (value) {
                 assert(value);
                 done();
-            }).catch(done);
+            }).catch(done);// => fail
+        });
+        it("is old promise testing pattern", function (done) {
+
+            getFailurePromise().catch(function (error) {
+                assert(error instanceof Error);
+                assert(error.message === "this is error");
+            }).then(done, done);
         });
     });
 });
