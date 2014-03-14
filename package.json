@@ -1,0 +1,26 @@
+{
+  "name": "mocha-support-promise",
+  "description": "example of mocha promises test.",
+  "version": "0.0.1",
+  "repository": {
+    "url": "git://github.com/azu/mocha-support-promise.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/*.js"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "author": "azu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/azu/mocha-support-promise/issues"
+  },
+  "devDependencies": {
+    "mocha": "~1.18.0"
+  },
+  "dependencies": {
+    "bluebird": "~1.1.0"
+  }
+}
