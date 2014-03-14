@@ -5,8 +5,8 @@ Mocha [1.18.0](https://github.com/visionmedia/mocha/blob/master/History.md#1180-
 When, promise object testing
 
 ``` js
-function getFailurePromise() {
-    return Promise.reject(true);
+function getSuccessPromise() {
+    return Promise.resolve(false);
 }
 ```
 
@@ -17,10 +17,10 @@ Until now,
 describe("OLD Promises Test Pattern", function () {
     context("with promise error handling", function () {
         it("should manually handling test...", function (done) {
-            getFailurePromise().then(function (value) {
+            getSuccessPromise().then(function (value) {
                 assert(value);
                 done();
-            }).catch(done);
+            }).catch(done); // when assert fail, it is needed.
         });
     });
 });
@@ -32,7 +32,7 @@ From now,
 describe("Promises", function () {
     context("when return promise object", function () {
         it("should support by mocha", function () {
-            return getFailurePromise().then(function (value) {
+            return getSuccessPromise().then(function (value) {
                 assert(value);
             });
         });
